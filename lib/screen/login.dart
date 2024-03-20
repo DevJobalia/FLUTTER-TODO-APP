@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/const/colors.dart';
+import 'package:untitled/data/auth_data.dart';
 
 class Login_Screen extends StatefulWidget {
   final VoidCallback show;
@@ -89,7 +90,7 @@ class _Login_ScreenState extends State<Login_Screen> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: GestureDetector(
         onTap: () {
-          // AuthenticationRemote().login(email.text, password.text);
+          AuthenticationRemote().login(email.text, password.text);
         },
         child: Container(
           alignment: Alignment.center,

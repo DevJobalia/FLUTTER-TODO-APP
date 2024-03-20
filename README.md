@@ -11,6 +11,7 @@
 - row
 - textField
 - GestureDetector
+- StreamBuilder
 
 - voice callback (int signup)
 - stateful + stateless
