@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:untitled/data/firestore.dart';
 // import 'package:untitled/data/firestore.dart';
 
 abstract class AuthenticationDatasource {
@@ -21,7 +22,7 @@ class AuthenticationRemote extends AuthenticationDatasource {
           .createUserWithEmailAndPassword(
               email: email.trim(), password: password.trim())
           .then((value) {
-        // Firestore_Datasource().CreateUser(email);
+        Firestore_Datasource().CreateUser(email);
       });
     }
   }
