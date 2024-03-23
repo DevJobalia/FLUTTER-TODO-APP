@@ -5,10 +5,12 @@ import "package:untitled/firebase_options.dart";
 import 'package:untitled/screen/add_note.dart';
 import 'package:untitled/screen/home.dart';
 import 'package:untitled/widgets/task-widgets.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: 'untitled',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
