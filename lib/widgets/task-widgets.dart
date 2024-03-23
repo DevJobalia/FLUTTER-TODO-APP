@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/const/colors.dart';
+import 'package:untitled/data/firestore.dart';
+import 'package:untitled/model/notes_model.dart';
 import 'package:untitled/screen/edit_note.dart';
 // import 'package:untitled/data/firestor.dart';
-// import 'package:untitled/model/notes_model.dart';
 // import 'package:untitled/screen/edit_screen.dart';
 
 class Task_Widget extends StatefulWidget {
-  // Note _note;
-  // Task_Widget(this._note, {super.key});
+  Note _note;
+  Task_Widget(this._note, {super.key});
 
   @override
   State<Task_Widget> createState() => _Task_WidgetState();
@@ -16,7 +17,7 @@ class Task_Widget extends StatefulWidget {
 class _Task_WidgetState extends State<Task_Widget> {
   @override
   Widget build(BuildContext context) {
-    bool isDone = false; //widget._note.isDon;
+    bool isDone = widget._note.isDon;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Container(
@@ -51,8 +52,7 @@ class _Task_WidgetState extends State<Task_Widget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Title",
-                          // widget._note.title,
+                          widget._note.title,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -65,19 +65,18 @@ class _Task_WidgetState extends State<Task_Widget> {
                             setState(() {
                               isDone = !isDone;
                             });
-                            //   // Firestore_Datasource()
-                            //   //     .isdone(widget._note.id, isDone);
+                              Firestore_Datasource().isdone(widget._note.id, isDone);
                           },
                         )
                       ],
                     ),
-                    // Text(
-                    //   widget._note.subtitle,
-                    //   style: TextStyle(
-                    //       fontSize: 16,
-                    //       fontWeight: FontWeight.w400,
-                    //       color: Colors.grey.shade400),
-                    // ),
+                    Text(
+                      widget._note.subtitle,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey.shade400),
+                    ),
                     Spacer(),
                     edit_time()
                   ],
@@ -112,13 +111,13 @@ class _Task_WidgetState extends State<Task_Widget> {
                   Image.asset('images/icon_time.png'),
                   SizedBox(width: 10),
                   Text(
-                      //   widget._note.time,
-                      //   style: TextStyle(
-                      //     color: Colors.white,
-                      //     fontSize: 14,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      "Time"),
+                        widget._note.time,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                 ],
               ),
             ),
@@ -128,7 +127,7 @@ class _Task_WidgetState extends State<Task_Widget> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 // builder: (context) => Edit_Screen(widget._note),
-                builder: (context) => Edit_Screen(),
+                builder: (context) => Edit_Screen(widget._note),
               ));
             },
             child: Container(
@@ -171,8 +170,7 @@ class _Task_WidgetState extends State<Task_Widget> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage('images/7.png'),
-          // ${widget._note.image}.png'),
+          image: AssetImage('images/${widget._note.image}.png'),
           fit: BoxFit.cover,
         ),
       ),

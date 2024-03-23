@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/const/colors.dart';
 // import 'package:untitled/data/firestor.dart';
-// import 'package:untitled/model/notes_model.dart';
+import 'package:untitled/model/notes_model.dart';
 
 class Edit_Screen extends StatefulWidget {
-  // Note _note;
-  Edit_Screen({super.key});
+  Note _note;
+  Edit_Screen(this._note,{super.key});
 
   @override
   State<Edit_Screen> createState() => _Edit_ScreenState();
@@ -22,8 +22,8 @@ class _Edit_ScreenState extends State<Edit_Screen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // title = TextEditingController(text: widget._note.title);
-    // subtitle = TextEditingController(text: widget._note.subtitle);
+    title = TextEditingController(text: widget._note.title);
+    subtitle = TextEditingController(text: widget._note.subtitle);
   }
 
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _Edit_ScreenState extends State<Edit_Screen> {
             //     widget._note.id, indexx, title!.text, subtitle!.text);
             Navigator.pop(context);
           },
-          child: Text('add task'),
+          child: Text('add task', style: TextStyle(color: Colors.white),),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -70,7 +70,7 @@ class _Edit_ScreenState extends State<Edit_Screen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Cancel'),
+          child: Text('Cancel', style: TextStyle(color: Colors.white),),
         ),
       ],
     );
@@ -86,7 +86,7 @@ class _Edit_ScreenState extends State<Edit_Screen> {
           return GestureDetector(
             onTap: () {
               setState(() {
-                indexx = index;
+                indexx = index+1;
               });
             },
             child: Padding(
@@ -96,14 +96,14 @@ class _Edit_ScreenState extends State<Edit_Screen> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     width: 2,
-                    color: indexx == index ? custom_green : Colors.grey,
+                    color: indexx == index+1 ? custom_green : Colors.grey,
                   ),
                 ),
                 width: 140,
                 margin: EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    Image.asset('images/${index}.png'),
+                    Image.asset('images/${index+1}.png'),
                   ],
                 ),
               ),

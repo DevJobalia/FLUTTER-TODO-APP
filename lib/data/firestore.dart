@@ -65,31 +65,31 @@ class Firestore_Datasource {
       return [];
     }
   }
-//
-//   Stream<QuerySnapshot> stream(bool isDone) {
-//     return _firestore
-//         .collection('users')
-//         .doc(_auth.currentUser!.uid)
-//         .collection('notes')
-//         .where('isDon', isEqualTo: isDone)
-//         .snapshots();
-//   }
-//
-//   Future<bool> isdone(String uuid, bool isDon) async {
-//     try {
-//       await _firestore
-//           .collection('users')
-//           .doc(_auth.currentUser!.uid)
-//           .collection('notes')
-//           .doc(uuid)
-//           .update({'isDon': isDon});
-//       return true;
-//     } catch (e) {
-//       print(e);
-//       return true;
-//     }
-//   }
-//
+
+  Stream<QuerySnapshot> stream() {
+    return _firestore
+        .collection('users')
+        .doc(_auth.currentUser!.uid)
+        .collection('notes')
+        // .where('isDon', isEqualTo: isDone)
+        .snapshots();
+  }
+
+  Future<bool> isdone(String uuid, bool isDon) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .update({'isDon': isDon});
+      return true;
+    } catch (e) {
+      print(e);
+      return true;
+    }
+  }
+
 //   Future<bool> Update_Note(
 //       String uuid, int image, String title, String subtitle) async {
 //     try {

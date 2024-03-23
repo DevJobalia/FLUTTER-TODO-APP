@@ -1,15 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/const/colors.dart';
 import 'package:untitled/data/firestore.dart';
 
-class Add_Note extends StatefulWidget {
-  const Add_Note({super.key});
+class Add_Screen extends StatefulWidget {
+  const Add_Screen({super.key});
 
   @override
-  State<Add_Note> createState() => _Add_NoteState();
+  State<Add_Screen> createState() => _Add_ScreenState();
 }
 
-class _Add_NoteState extends State<Add_Note> {
+class _Add_ScreenState extends State<Add_Screen> {
   final title = TextEditingController();
   final subtitle = TextEditingController();
 
@@ -50,18 +51,17 @@ class _Add_NoteState extends State<Add_Note> {
             Firestore_Datasource().AddNote(subtitle.text, title.text, indexx);
             Navigator.pop(context);
           },
-          child: Text('add task'),
+          child: Text('add task', style: TextStyle(color: Colors.white),),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.red,
-
             minimumSize: Size(170, 48),
           ),
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Cancel'),
+          child: Text('Cancel', style: TextStyle(color: Colors.white),),
         ),
       ],
     );
@@ -71,13 +71,13 @@ class _Add_NoteState extends State<Add_Note> {
     return Container(
       height: 180,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: 4,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               setState(() {
-                indexx = index;
+                indexx = index+1;
               });
             },
             child: Padding(
@@ -87,14 +87,14 @@ class _Add_NoteState extends State<Add_Note> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     width: 2,
-                    color: indexx == index ? custom_green : Colors.grey,
+                    color: indexx == index+1 ? custom_green : Colors.grey,
                   ),
                 ),
                 width: 140,
                 margin: EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    Image.asset('images/${index}.png'),
+                    Image.asset('images/${index+1}.png'),
                   ],
                 ),
               ),
@@ -119,7 +119,7 @@ class _Add_NoteState extends State<Add_Note> {
           style: TextStyle(fontSize: 18, color: Colors.black),
           decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               hintText: 'title',
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
