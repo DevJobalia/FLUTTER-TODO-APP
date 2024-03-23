@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/const/colors.dart';
+import 'package:untitled/data/firestore.dart';
 // import 'package:untitled/data/firestor.dart';
 import 'package:untitled/model/notes_model.dart';
 
@@ -56,11 +57,11 @@ class _Edit_ScreenState extends State<Edit_Screen> {
             minimumSize: Size(170, 48),
           ),
           onPressed: () {
-            // Firestore_Datasource().Update_Note(
-            //     widget._note.id, indexx, title!.text, subtitle!.text);
+             Firestore_Datasource().Update_Note(
+                widget._note.id, indexx, title!.text, subtitle!.text);
             Navigator.pop(context);
           },
-          child: Text('add task', style: TextStyle(color: Colors.white),),
+          child: Text('edit task', style: TextStyle(color: Colors.white),),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(

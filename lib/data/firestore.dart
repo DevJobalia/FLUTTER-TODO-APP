@@ -90,28 +90,28 @@ class Firestore_Datasource {
     }
   }
 
-//   Future<bool> Update_Note(
-//       String uuid, int image, String title, String subtitle) async {
-//     try {
-//       DateTime data = new DateTime.now();
-//       await _firestore
-//           .collection('users')
-//           .doc(_auth.currentUser!.uid)
-//           .collection('notes')
-//           .doc(uuid)
-//           .update({
-//         'time': '${data.hour}:${data.minute}',
-//         'subtitle': subtitle,
-//         'title': title,
-//         'image': image,
-//       });
-//       return true;
-//     } catch (e) {
-//       print(e);
-//       return true;
-//     }
-//   }
-//
+  Future<bool> Update_Note(
+      String uuid, int image, String title, String subtitle) async {
+    try {
+      DateTime data = new DateTime.now();
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .update({
+        'time': '${data.hour}:${data.minute}',
+        'subtitle': subtitle,
+        'title': title,
+        'image': image,
+      });
+      return true;
+    } catch (e) {
+      print(e);
+      return true;
+    }
+  }
+
 //   Future<bool> delet_note(String uuid) async {
 //     try {
 //       await _firestore
