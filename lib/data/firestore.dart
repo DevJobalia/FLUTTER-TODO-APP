@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/model/notes_model.dart';
 import 'package:uuid/uuid.dart';
 // import 'package:flutter_to_do_list/model/notes_model.dart';
 
@@ -44,26 +45,26 @@ class Firestore_Datasource {
       return true;
     }
   }
-//
-//   List getNotes(AsyncSnapshot snapshot) {
-//     try {
-//       final notesList = snapshot.data!.docs.map((doc) {
-//         final data = doc.data() as Map<String, dynamic>;
-//         return Note(
-//           data['id'],
-//           data['subtitle'],
-//           data['time'],
-//           data['image'],
-//           data['title'],
-//           data['isDon'],
-//         );
-//       }).toList();
-//       return notesList;
-//     } catch (e) {
-//       print(e);
-//       return [];
-//     }
-//   }
+
+  List getNotes(AsyncSnapshot snapshot) {
+    try {
+      final notesList = snapshot.data!.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return Note(
+          data['id'],
+          data['subtitle'],
+          data['time'],
+          data['image'],
+          data['title'],
+          data['isDon'],
+        );
+      }).toList();
+      return notesList;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
 //
 //   Stream<QuerySnapshot> stream(bool isDone) {
 //     return _firestore
