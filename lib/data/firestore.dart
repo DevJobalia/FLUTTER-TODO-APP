@@ -112,18 +112,18 @@ class Firestore_Datasource {
     }
   }
 
-//   Future<bool> delet_note(String uuid) async {
-//     try {
-//       await _firestore
-//           .collection('users')
-//           .doc(_auth.currentUser!.uid)
-//           .collection('notes')
-//           .doc(uuid)
-//           .delete();
-//       return true;
-//     } catch (e) {
-//       print(e);
-//       return true;
-//     }
-//   }
+  Future<bool> delet_note(String uuid) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .delete();
+      return true;
+    } catch (e) {
+      print(e);
+      return true;
+    }
+  }
 }

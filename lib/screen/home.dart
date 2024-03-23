@@ -57,7 +57,9 @@ class _Home_ScreenState extends State<Home_Screen> {
               final noteslist = Firestore_Datasource().getNotes(snapshot);
               return ListView.builder(itemBuilder: (context, index) {
                 final note = noteslist[index];
-                return Task_Widget(note);
+                return Dismissible(key: UniqueKey(), onDismissed: (direction){
+                  Firestore_Datasource().delet_note(note.id);
+                }, child: Task_Widget(note));
               },
                 // return Task_Widget();
 
