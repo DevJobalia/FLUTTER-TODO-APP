@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/const/colors.dart';
+import 'package:untitled/data/firestore.dart';
 
 class Add_Note extends StatefulWidget {
   const Add_Note({super.key});
@@ -46,7 +47,7 @@ class _Add_NoteState extends State<Add_Note> {
             minimumSize: Size(170, 48),
           ),
           onPressed: () {
-            // Firestore_Datasource().AddNote(subtitle.text, title.text, indexx);
+            Firestore_Datasource().AddNote(subtitle.text, title.text, indexx);
             Navigator.pop(context);
           },
           child: Text('add task'),
