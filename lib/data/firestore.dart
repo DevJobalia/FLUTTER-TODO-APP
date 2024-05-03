@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:untitled/model/notes_model.dart';
 import 'package:uuid/uuid.dart';
 // import 'package:flutter_to_do_list/model/notes_model.dart';
@@ -126,4 +127,23 @@ class Firestore_Datasource {
       return true;
     }
   }
+  Stream<int> getNoteStreamLength({required bool isDone}) {
+    return stream(isDone).map((snapshot) => snapshot.size);
+  }
+
+  Stream<double> getProgressStream() {
+    final firestoreDatasource = Firestore_Datasource();
+    final doneStream = firestoreDatasource.getNoteStreamLength(isDone: true); // Stream for done tasks count
+    final notDoneStream = firestoreDatasource.getNoteStreamLength(isDone: false); // Stream for not done tasks count
+
+    return CombineLatestStream.combine2(
+      doneStream,
+      notDoneStream,
+          (doneCount, notDoneCount) {
+        return doneCount / (doneCount + notDoneCount);
+      },
+    );
+  }
+
 }
+
